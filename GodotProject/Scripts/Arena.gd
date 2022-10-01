@@ -8,11 +8,15 @@ extends Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#connect("body_entered", self, "_on_body_entered")
 	connect("body_exited", self, "BodyExited")
+	connect("body_entered", self, "BodyEntered")
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func BodyExited(body):
-	if(body.name == "Player"):
-		#emit_signal("body_exited", )
-		return
+func BodyExited(body: Node) -> void:
+	body.emit_signal("Falling")
+	return
+
+func BodyEntered(body: Node) -> void:
+	body.emit_signal("Entering")
+	return

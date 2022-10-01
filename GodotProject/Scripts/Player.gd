@@ -1,30 +1,31 @@
 extends KinematicBody2D
 
-
-func _ready():
-	pass # Replace with function body.
-
 const MOVESPEED = 500
 
 var velocity = Vector2.ZERO
-onready var r_cast = $Raycast
+
+signal Falling
+signal Entering
+
+func _ready():
+	connect("Falling", self, "OnFall")
+	connect("Entering", self, "OnEnter")
+	return
 
 func _process(delta: float) -> void:
-	ArenaCollision()
 	PlayerInputs()
-	
 	move_and_slide(velocity.normalized() * MOVESPEED)
 	return
 
 func PlayerInputs():
 	velocity.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
 	velocity.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
-	if(Input.is_action_pressed("down")):
-		$Sprite/Shake.Start()
-
-func ArenaCollision():
-	
 	return
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
+func OnFall():	
+	$Sprite.modulate = Color(1, 0, 0, 1)
+	return
+
+func OnEnter():
+	$Sprite.modulate = Color.white
+	return
