@@ -19,6 +19,8 @@ func _process(delta: float) -> void:
 func PlayerInputs():
 	velocity.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
 	velocity.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
+	if(Input.is_action_pressed("down")):
+		$Sprite/Shake.Start()
 
 func ArenaCollision():
 	
