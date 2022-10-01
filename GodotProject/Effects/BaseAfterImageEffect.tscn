@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Resources/player.png" type="Texture" id=1]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0.0129032, 0.870968 )
+colors = PoolColorArray( 0.0117647, 0.647059, 0.694118, 0.541176, 0.0117647, 0.647059, 0.694118, 0 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 4 )
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.793182 ), -0.554805, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+trail_divisor = 4
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 7 )
+
+[node name="BaseTrailEffect" type="Particles2D"]
+z_as_relative = false
+amount = 10
+lifetime = 0.3
+local_coords = false
+process_material = SubResource( 3 )
+texture = ExtResource( 1 )

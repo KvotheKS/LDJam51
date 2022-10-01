@@ -30,6 +30,8 @@ func PlayerInputs():
 	velocity.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
 	if Input.is_action_just_pressed("left_click"):
 		Shoot()
+	if(Input.is_action_pressed("w_key")):
+		$Sprite/DamageTakenBehavior.Start()
 	return
 
 func Shoot():
@@ -48,9 +50,9 @@ func Shoot():
 	return
 
 func OnFall():	
-	$Sprite.modulate = Color(1, 0, 0, 1)
+	#$Sprite.modulate = Color(1, 0, 0, 1)
 	return
 
 func OnEnter():
-	$Sprite.modulate = Color.white
+	#$Sprite.modulate = Color.white
 	return
