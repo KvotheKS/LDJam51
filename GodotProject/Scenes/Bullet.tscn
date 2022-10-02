@@ -4,7 +4,7 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="Area2D" groups=["BULLET_G"]]
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

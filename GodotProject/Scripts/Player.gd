@@ -56,5 +56,6 @@ func OnFall():
 	return
 
 func OnEnter():
+	print("on enter hat")
 	#$Sprite.modulate = Color.white
 	return

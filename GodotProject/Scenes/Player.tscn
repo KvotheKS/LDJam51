@@ -11,8 +11,6 @@ extents = Vector2( 20, 16.375 )
 
 [node name="Player" type="KinematicBody2D" groups=["Grounded"]]
 position = Vector2( 299, 151 )
-collision_layer = 2
-collision_mask = 2
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]

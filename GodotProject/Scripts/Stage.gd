@@ -5,7 +5,7 @@ export(PackedScene) var enemy_scene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for i in range(10):
+	for i in range(1):
 		var enemy =  enemy_scene.instance()
 		
 		enemy.SetTarget($Player)
