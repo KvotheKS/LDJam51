@@ -12,7 +12,7 @@ func _ready():
 var curr_distance = 0
 var max_distance = 15000
 
-func SetParameters(central_position: Vector2, sprite: Sprite, movement_type, new_distance: float) -> void:
+func SetParameters(central_position: Vector2, sprite, movement_type, new_distance: float) -> void:
 	var rect_info = sprite.get_rect()
 	$CollisionShape2D.shape.extents = rect_info.size
 	sprite.name = "Sprite"

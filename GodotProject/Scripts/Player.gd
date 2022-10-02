@@ -3,14 +3,14 @@ extends KinematicBody2D
 const MOVESPEED = 500
 const BASEBULLETSPEED = 300 
 const BASEBULLETMAX = 450
-const BASEBULLETSIZE = Vector2(25,25)
+const BASEBULLETSIZE = Vector2(45,45)
 
 var velocity = Vector2.ZERO
 
-signal Falling
-signal Entering
+signal Falling()
+signal Entering()
 
-var base_bullet = load("res://Resources/bullet.jpg")
+var base_bullet = load("res://Resources/projetil_normal1.png")
 var bullet_scene = load("res://Scenes/Bullet.tscn")
 var ondular_movement = load("res://Scenes/OndularMovement.tscn")
 var linear_movement = load("res://Scenes/LinearMovement.tscn")
@@ -40,10 +40,12 @@ func Shoot():
 	
 	var bullet_sprite = Sprite.new()
 	bullet_sprite.texture = base_bullet
+	
 	bullet_sprite.rotation = bullet_angle + PI/2
 	bullet_sprite.scale = BASEBULLETSIZE/bullet_sprite.get_rect().size
-	var movement = ondular_movement.instance()
-	movement.SetParameters(BASEBULLETSPEED, bullet_angle, 20, 0.05)
+	
+	var movement = linear_movement.instance()
+	movement.SetParameters(BASEBULLETSPEED, bullet_angle)
 	bullet_instance.SetParameters(position, bullet_sprite, movement, BASEBULLETMAX)
 
 	get_parent().add_child(bullet_instance)
