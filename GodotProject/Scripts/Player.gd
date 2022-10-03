@@ -15,6 +15,9 @@ var base_bullet = load("res://Resources/projetil_normal1.png")
 var bullet_scene = load("res://Scenes/Bullet.tscn")
 var ondular_movement = load("res://Scenes/OndularMovement.tscn")
 var linear_movement = load("res://Scenes/LinearMovement.tscn")
+#Hit enum
+enum {SLASH = 1, PEW = 2, FAIL = 3, FIRE = 4}
+var curr_hit_sound = SLASH
 
 func _ready():
 	$Area2D.connect("area_entered", self, "OnEnemy")
@@ -28,6 +31,7 @@ func _ready():
 func _process(delta: float) -> void:
 	PlayerInputs()
 	move_and_slide(velocity.normalized() * MOVESPEED)
+	
 	return
 
 func PlayerInputs():
@@ -36,6 +40,24 @@ func PlayerInputs():
 	if Input.is_action_pressed("left_click"):
 		#Shoot()
 		$Gun.emit_signal("Shoot", [position, (get_global_mouse_position() - position).angle()])
+
+
+	#When associating the sound with an action, 
+	#use the set enum and the function 
+	#LoadSound(enum) for changing the hit sound
+	#example below:
+	if Input.is_action_just_pressed("down"):
+		LoadHitSound(FAIL)
+		$Hit.play()
+	elif Input.is_action_just_pressed("left"):
+		LoadHitSound(SLASH)
+		$Hit.play()
+	elif Input.is_action_just_pressed("right"):
+		LoadHitSound(FIRE)
+		$Hit.play()
+	elif Input.is_action_just_pressed("up"):
+		LoadHitSound(PEW)
+		$Hit.play()
 	return
 
 func BaseBulletInfo():
@@ -75,3 +97,23 @@ func OnEnter():
 	print("on enter hat")
 	#$Sprite.modulate = Color.white
 	return
+
+
+#Move to external file
+func LoadHitSound(to_load: int):
+
+	if to_load != curr_hit_sound and to_load == FAIL:
+		curr_hit_sound = to_load
+		$Hit.stream = preload("res://Audio/wah.ogg")
+
+	elif to_load != curr_hit_sound and to_load == SLASH:
+		curr_hit_sound = to_load
+		$Hit.stream = preload("res://Audio/posh.ogg")
+
+	elif to_load != curr_hit_sound and to_load == FIRE:
+		curr_hit_sound = to_load
+		$Hit.stream = preload("res://Audio/woh.ogg")
+
+	elif to_load != curr_hit_sound and to_load == PEW:
+		curr_hit_sound = to_load
+		$Hit.stream = preload("res://Audio/pwew.ogg")

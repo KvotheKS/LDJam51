@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/woh.ogg-25cf75cb7db25aa15b30c6a4c214f1f4.oggstr"
+
+[deps]
+
+source_file="res://Audio/woh.ogg"
+dest_files=[ "res://.import/woh.ogg-25cf75cb7db25aa15b30c6a4c214f1f4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
