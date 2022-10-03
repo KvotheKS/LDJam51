@@ -10,6 +10,6 @@ func BodyExited(body: Node) -> void:
 	return
 
 func BodyEntered(body: Node) -> void:
-	if(body.is_in_group("ENEMY_G")):
-		body.Die()
+	#if(body.is_in_group("ENEMY_G")):
+	#	body.Die()
 	return

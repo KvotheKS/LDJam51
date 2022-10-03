@@ -8,7 +8,7 @@ var priority = 0
 var fade_shake = false;
 onready var shaked_object = get_parent()
 
-func Start(frequency = 0.05, amplitude = 20, duration = 1, priority = 0,fade_shake = true):
+func Start(frequency = 0.05, amplitude = 10, duration = 0.25, priority = 0,fade_shake = true):
 	if(self.priority <= priority):
 		self.priority = priority
 		self.amplitude = amplitude
@@ -32,7 +32,7 @@ func NewShake():
 	rand.x = rand_range(-amplitude,amplitude)
 	rand.y = rand_range(-amplitude,amplitude)
 	
-	$ShakeTween.interpolate_property(shaked_object,"offset",shaked_object.offset,rand,$Frequency.wait_time,TRANS,EASE)
+	$ShakeTween.interpolate_property(shaked_object, "offset",shaked_object.offset,rand,$Frequency.wait_time,TRANS,EASE)
 	$ShakeTween.start()
 	if(fade_shake):
 		amplitude = amplitude*0.9

@@ -41,6 +41,7 @@ shape = SubResource( 3 )
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="Player"]
 position = Vector2( -299, -151 )
+volume_db = -7.866
 bus = "SFX"
 
 [node name="Control" parent="." instance=ExtResource( 6 )]
