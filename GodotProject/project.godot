@@ -14,6 +14,11 @@ config/name="LDJam51"
 run/main_scene="res://Scenes/Stage.tscn"
 config/icon="res://icon.png"
 
+[global]
+
+"window]"=false
+window=false
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
