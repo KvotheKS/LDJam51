@@ -17,7 +17,6 @@ func SetStatus():
 	pass
 	
 func _ready():
-	
 	speed = rand_range(50,150)
 	pass
 
@@ -36,7 +35,7 @@ func TakeDamage(damage):
 		Die()
 		
 func Die():
-	pass
+	queue_free()
 	
 
 func _on_Enemy_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
@@ -45,5 +44,4 @@ func _on_Enemy_body_shape_entered(body_rid, body, body_shape_index, local_shape_
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("BULLET_G"):
-		print("ouchmama2 " , area.name , " touched me")
-	
+		TakeDamage(15)

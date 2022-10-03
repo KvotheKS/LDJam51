@@ -9,7 +9,6 @@ func _ready():
 		var enemy =  enemy_scene.instance()
 		
 		enemy.SetTarget($Player)
-		
 		add_child(enemy)
 
 

@@ -23,7 +23,6 @@ func _ready():
 	pass 
 
 func NewShake():
-	
 	$AlphaTween.interpolate_property(affected_node,"modulate",Color(1,1,1,0.6),Color(1,1,1,0.8),$Duration.wait_time,TRANS,EASE)
 	$AlphaTween.start()
 
