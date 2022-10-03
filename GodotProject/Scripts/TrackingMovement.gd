@@ -10,7 +10,7 @@ func _ready():
 	var current_movement = LinearBody.get_node("Movement")
 	angle = current_movement.angle
 	speed = current_movement.speed
-	LinearBody.remove_child(current_movement)
+	LinearBody.call_deferred("removechild",current_movement)
 	
 	name = "Movement"
 	target = ClosestEnemy()

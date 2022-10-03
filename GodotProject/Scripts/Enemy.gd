@@ -15,6 +15,7 @@ var mod
 var beefy = 1
 
 signal TakeBullet(bullet)
+signal Falling()
 signal Dead()
 
 onready var buff_node = get_parent().get_node("Buffs")
@@ -28,8 +29,11 @@ func _ready():
 	hp = max_hp
 	$DeathBehavior/Hit.stream = preload("res://Audio/wah.ogg")
 	connect("TakeBullet", self, "OnHealth")
+	connect("Falling", self, "Die")
 
 func _process(delta):
+	if not is_instance_valid(target):
+		return
 	linear_velocity = (target.position - global_transform.origin).normalized() * speed 
 	if(linear_velocity.x<0):
 		$AnimatedSprite.flip_h = true
@@ -49,7 +53,6 @@ func TakeDamage(damage):
 	Die()
 
 func _on_Area2D_area_entered(area):
-	
 	if area.is_in_group("BULLET_G"):
 		emit_signal("TakeBullet", area)
 
@@ -61,6 +64,7 @@ func OnHealth(bullet):
 
 func Fall():
 	$FallBehavior.Start()
+	set_process(false)
 	
 func Die():
 	$DeathBehavior.Start()

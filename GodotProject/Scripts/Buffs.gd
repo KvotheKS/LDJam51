@@ -14,7 +14,7 @@ var PlayerModifiers = [
 ]
 
 var EnemyModifiers = [
-	"FasterMotion", "Exploding", "StrongPushback", "Hydra"
+	"FasterMotion"
 ]
 
 var StatusEffects = {
@@ -30,10 +30,6 @@ var ProtectionEffects = {
 
 var monster_buff_scenes = {
 	"FasterMotion": load("res://Buffs/FasterMotion.tscn"), 
-	"Armored" : load("res://Buffs/Armored.tscn"), 
-	"Exploding" : load("res://Buffs/ExplosiveBody.tscn"), 
-	"StrongPushback" : load("res://Buffs/StrongPushback.tscn"), 
-	"Hydra" : load("res://Buffs/Hydra.tscn")
 }
 
 var debuff_names = ["Powdered", "Lacerating", "Poisonous"]
@@ -43,6 +39,8 @@ var debuff_scenes = {
 	"Lacerating" : load("res://Buffs/Bleeding.tscn"),
 	"Poisonous" : load("res://Buffs/Poisoned.tscn"),
 }
+
+var enemy_explosion_scene = load("res://Scenes/explosion.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

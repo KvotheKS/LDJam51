@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/Arena.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Stage.gd" type="Script" id=5]
-[ext_resource path="res://Scenes/Health.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Audio/hat120.ogg" type="AudioStream" id=6]
 [ext_resource path="res://Scenes/Buffs.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Resources/background.png" type="Texture" id=8]
 
@@ -44,13 +44,17 @@ position = Vector2( -299, -151 )
 volume_db = -7.866
 bus = "SFX"
 
-[node name="Control" parent="." instance=ExtResource( 6 )]
-
 [node name="Audio" type="Node2D" parent="."]
 
 [node name="OST" type="AudioStreamPlayer" parent="Audio"]
 physics_interpolation_mode = 1
+stream = ExtResource( 6 )
+volume_db = -11.362
 autoplay = true
 bus = "OST"
 
 [node name="Buffs" parent="." instance=ExtResource( 7 )]
+
+[node name="Duration" type="Timer" parent="."]
+wait_time = 6.0
+autostart = true

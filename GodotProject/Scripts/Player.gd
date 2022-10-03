@@ -11,6 +11,7 @@ const PLAYERMAXHEALTH = 8
 var speed = 0
 var velocity = Vector2.ZERO
 var hp = PLAYERMAXHEALTH
+var took_damage = false
 
 signal Falling()
 signal Entering()
@@ -77,18 +78,19 @@ func BaseBulletSprite():
 
 func NormalTakeDamage():
 	hp -= 1
-	if hp == 0:
-		print("OUCHIE")
+	$Control/ProgressBar.value = hp
 
 
 func OnEnemy(area):
-	if area.is_in_group("ENEMY_G"):
+	if area.is_in_group("ENEMY_G") and $DamageTakenBehavior/Duration.is_stopped():
 		$DamageTakenBehavior.Start()
 		$Hit.play()
 		NormalTakeDamage()
 
 func OnFall():	
-	#$Sprite.modulate = Color(1, 0, 0, 1)
+	$Hit.play()
+	$FallBehavior.Start()
+	set_process(false)
 	return
 
 func OnEnter():
