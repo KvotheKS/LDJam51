@@ -34,13 +34,9 @@ func TakeDamage(damage):
 	if hp <= 0:
 		hp = 0
 		Die()
-		
-
-
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("BULLET_G"):
-		
 		print("ouchmama2 " , area.name , " touched me")
 	
 func Fall():
