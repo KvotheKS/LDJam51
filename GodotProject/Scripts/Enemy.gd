@@ -19,10 +19,14 @@ func SetStatus():
 	
 func _ready():
 	speed = rand_range(50,150)
-	pass
+	
 
 func _process(delta):
 	linear_velocity = (target.position - global_transform.origin).normalized() * speed 
+	if(linear_velocity.x<0):
+		$AnimatedSprite.flip_h = true
+	else:
+		$AnimatedSprite.flip_h = false
 
 
 func SetTarget(body):
@@ -36,6 +40,7 @@ func TakeDamage(damage):
 		Die()
 
 func _on_Area2D_area_entered(area):
+	
 	if area.is_in_group("BULLET_G"):
 		print("ouchmama2 " , area.name , " touched me")
 	

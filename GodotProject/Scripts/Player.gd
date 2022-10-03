@@ -33,6 +33,11 @@ func _ready():
 func _process(delta: float) -> void:
 	PlayerInputs()
 	move_and_slide(velocity.normalized() * MOVESPEED)
+	#flippar sprite de acordo com movimento
+	if(velocity.x<0):
+		$Sprite.flip_h = true
+	if(velocity.x>0):
+		$Sprite.flip_h = false
 	
 	return
 
