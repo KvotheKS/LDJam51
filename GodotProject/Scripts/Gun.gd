@@ -21,6 +21,7 @@ var bullet_buff_scenes = {
 	"HeavyBullets" : load("res://Buffs/BigSlow.tscn"),
 	"TeleportedBullets" : load("res://Buffs/TeleportedBullet.tscn"),
 	"TrackingBullets": load("res://Scenes/TrackingMovement.tscn"),
+	"PowderedBullets": load("res://Buffs/PowderedBullet.tscn")
 }
 
 var current_bullet_buffs = []
@@ -33,10 +34,13 @@ var speed = 1
 var GenerateBulletSprite = null
 var GenerateBulletInfo = null
 var ShootType = funcref(self, "Cone")
+onready var parnt = get_parent()
 onready var world = get_parent().get_parent()
 
 func _ready():
 	$Duration.connect("timeout", $Duration, "stop")
+	$Hit.stream = preload("res://Audio/pwew.ogg")
+	
 
 func SetGenSprite(parnt, gen_bullet_spr):
 	GenerateBulletSprite = funcref(parnt, gen_bullet_spr)
@@ -95,12 +99,13 @@ func SimpleShoot(info):
 	var bullet_info = GenerateBulletInfo.call_func()
 	bullet_sprite.rotation = bullet_angle
 	var movement = linear_movement.instance()
-	movement.SetParameters(bullet_info[0], bullet_angle)
-	bullet_instance.SetParameters(global_position, bullet_sprite, movement, bullet_info[1], bullet_info[2])
-	
+	var speed_calc = Vector2(bullet_info[0], 0).rotated(bullet_angle) + parnt.velocity.normalized() * parnt.speed 
+	movement.SetParameters(speed_calc.length(), speed_calc.angle())
+	bullet_instance.SetParameters(global_position, bullet_sprite, movement, bullet_info[1])
 	for buff_type in current_bullet_buffs:
 		bullet_instance.add_child(bullet_buff_scenes[buff_type].instance())
 	world.add_child(bullet_instance)
+	$Hit.play()
 
 
 func ResetBuffs(Player):

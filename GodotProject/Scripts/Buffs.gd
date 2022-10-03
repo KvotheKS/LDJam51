@@ -5,30 +5,22 @@ signal enemy_buffs(Enemy)
 
 var bullshit_level = 0
 
-var PlayerModifiers = {
-	"Basic" : [
+var PlayerModifiers = [
 		"FasterMotion", "SlowMotion", "FasterShooting", 
 		"DoubleBullets", "RepeatingBullets", "TeleportedBullets", 
-		"Armored"
-	],
-	"Complex" : [
+		"Armored",
 		"HeavyBullets", "LaceratingBullets", "PoisonousBullets",
-		"SafeGuard"
-	],
-	"Supreme" : [
-		"TrackingBullets", "ExplodeEnemy"
-	],
-}
+		"TrackingBullets", "PowderedBullets"
+]
 
-var EnemyModifiers = {
-	"Basic" : ["FasterMotion", "SlowMotion"],
-	"Complex" : ["Exploding", "StrongPushback"],
-	"Supreme" : ["Hydra"]
-}
+var EnemyModifiers = [
+	"FasterMotion", "Exploding", "StrongPushback", "Hydra"
+]
 
 var StatusEffects = {
 	"Lacerating" : 0,
 	"Poisonous" : 0,
+	"Powdered" : 0,
 }
 
 var ProtectionEffects = {
@@ -36,17 +28,42 @@ var ProtectionEffects = {
 	"SafeGuard": 0,
 }
 
+var monster_buff_scenes = {
+	"FasterMotion": load("res://Buffs/FasterMotion.tscn"), 
+	"Armored" : load("res://Buffs/Armored.tscn"), 
+	"Exploding" : load("res://Buffs/ExplosiveBody.tscn"), 
+	"StrongPushback" : load("res://Buffs/StrongPushback.tscn"), 
+	"Hydra" : load("res://Buffs/Hydra.tscn")
+}
+
+var debuff_names = ["Powdered", "Lacerating", "Poisonous"]
+
+var debuff_scenes = {
+	"Powdered" : load("res://Buffs/PowderedEnemy.tscn"),
+	"Lacerating" : load("res://Buffs/Bleeding.tscn"),
+	"Poisonous" : load("res://Buffs/Poisoned.tscn"),
+}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Duration.connect("timeout", self, "ResetBuffs")
+	randomize()
 
 func ResetBuffs():
-	var player_buffs = ["DoubleBullets"]
-	var enemy_buffs = []
-	
-	emit_signal("player_buffs", player_buffs)
-	emit_signal("enemy_buffs", enemy_buffs)
-	
 	bullshit_level += 1
 	
+	var dup_buffs = []
+	
+	for i in PlayerModifiers:
+		dup_buffs.append(i)
+	dup_buffs.shuffle()
+	
+	var player_buffs = []
+	for i in bullshit_level:
+		
+		if i > dup_buffs.size():
+			break
+			
+		player_buffs.append(dup_buffs[i])
+	
+	emit_signal("player_buffs", player_buffs)
 	return

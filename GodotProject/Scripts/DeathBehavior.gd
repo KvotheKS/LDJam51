@@ -29,6 +29,7 @@ func _on_Duration_timeout():
 		$Tween.stop(target)
 		Vanish()
 		cicle -= 1
+		$Hit.play()
 	else:
 		
 		target.hide()
