@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/pwew.ogg-c644bc60d03bcba49c9ec9da1ccb8895.oggstr"
+
+[deps]
+
+source_file="res://Audio/pwew.ogg"
+dest_files=[ "res://.import/pwew.ogg-c644bc60d03bcba49c9ec9da1ccb8895.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

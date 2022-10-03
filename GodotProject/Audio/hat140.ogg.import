@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hat140.ogg-6f014a0e11d1ee330054fbcd3b67bd98.oggstr"
+
+[deps]
+
+source_file="res://Audio/hat140.ogg"
+dest_files=[ "res://.import/hat140.ogg-6f014a0e11d1ee330054fbcd3b67bd98.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
