@@ -19,6 +19,7 @@ animations = [ {
 radius = 11.0454
 
 [node name="Enemy" type="RigidBody2D" groups=["ENEMY_G"]]
+modulate = Color( 0.764706, 0.568627, 0.882353, 1 )
 mode = 2
 custom_integrator = true
 script = ExtResource( 3 )

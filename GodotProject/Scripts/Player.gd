@@ -45,9 +45,16 @@ func _ready():
 
 func _process(delta: float) -> void:
 	PlayerInputs()
+
 	velocity = velocity.normalized() * speed
 	move_and_slide(velocity)
 	velocity *= delta
+
+	#flippar sprite de acordo com movimento
+	if(velocity.x<0):
+		$Sprite.flip_h = true
+	if(velocity.x>0):
+		$Sprite.flip_h = false
 	return
 
 func PlayerInputs():
@@ -72,6 +79,7 @@ func NormalTakeDamage():
 	hp -= 1
 	if hp == 0:
 		print("OUCHIE")
+
 
 func OnEnemy(area):
 	if area.is_in_group("ENEMY_G"):

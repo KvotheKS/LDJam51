@@ -31,6 +31,10 @@ func _ready():
 
 func _process(delta):
 	linear_velocity = (target.position - global_transform.origin).normalized() * speed 
+	if(linear_velocity.x<0):
+		$AnimatedSprite.flip_h = true
+	else:
+		$AnimatedSprite.flip_h = false
 
 
 func SetTarget(body):
@@ -45,6 +49,7 @@ func TakeDamage(damage):
 	Die()
 
 func _on_Area2D_area_entered(area):
+	
 	if area.is_in_group("BULLET_G"):
 		emit_signal("TakeBullet", area)
 
