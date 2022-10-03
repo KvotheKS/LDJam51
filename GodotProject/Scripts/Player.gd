@@ -79,6 +79,9 @@ func BaseBulletSprite():
 func NormalTakeDamage():
 	hp -= 1
 	$Control/ProgressBar.value = hp
+	if hp == 0:
+		$FallBehavior.Start()
+		set_process(false)
 
 
 func OnEnemy(area):
