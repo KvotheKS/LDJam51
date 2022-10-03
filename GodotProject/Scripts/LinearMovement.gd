@@ -1,17 +1,17 @@
 extends Node
 
 onready var LinearBody = get_parent()
-var linear_speed = 0
-var speed = Vector2.ZERO
+var angle = 0
+var speed = 0
 
 func _ready():
 	pass # Replace with function body.
 
 func SetParameters(new_speed: float, new_angle: float) -> void:
-	linear_speed = new_speed
-	speed = Vector2(new_speed,0).rotated(new_angle)	
+	angle = new_angle
+	speed = new_speed	
 	return
 
 func _physics_process(delta: float) -> void:
-	LinearBody.position += speed * delta
+	LinearBody.position += Vector2(speed,0).rotated(angle) * delta
 	return
