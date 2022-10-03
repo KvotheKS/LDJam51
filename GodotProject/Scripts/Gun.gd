@@ -76,6 +76,7 @@ func Shoot(info):
 			add_child(gun_buff_scenes[gun_buff].instance())
 	
 func Around(info):
+	$Hit.play()
 	var distance_between = 2*PI/angular_bullets
 	var initial_angle = info[0]
 	for i in angular_bullets:
@@ -84,6 +85,7 @@ func Around(info):
 	info[0] = initial_angle
 
 func Cone(info):
+	$Hit.play()
 	var distance_between = (PI/2)/(angular_bullets+1)
 	var initial_angle = info[0]
 	info[0] -= PI/4
@@ -105,7 +107,7 @@ func SimpleShoot(info):
 	for buff_type in current_bullet_buffs:
 		bullet_instance.add_child(bullet_buff_scenes[buff_type].instance())
 	world.add_child(bullet_instance)
-	$Hit.play()
+	
 
 
 func ResetBuffs(Player):

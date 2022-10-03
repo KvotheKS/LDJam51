@@ -8,4 +8,4 @@ script = ExtResource( 1 )
 [node name="Duration" type="Timer" parent="."]
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]
-volume_db = -26.219
+volume_db = -4.0
