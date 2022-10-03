@@ -72,6 +72,7 @@ func BaseBulletSprite():
 	bullet_sprite.scale = BASEBULLETSIZE/bullet_sprite.get_rect().size
 	return bullet_sprite
 
+
 func OnEnemy(area):
 	if area.is_in_group("ENEMY_G"):
 		$DamageTakenBehavior.Start()
