@@ -6,12 +6,10 @@ func _ready():
 	pass
 
 func BodyExited(body: Node) -> void:
-	body.emit_signal("area_entered")
-	if body.is_in_group("Grounded"):
-		body.OnFall()
+	#body.emit_signal("Falling")
 	return
 
 func BodyEntered(body: Node) -> void:
-	body.emit_signal("Falling")
+	if(body.is_in_group("ENEMY_G")):
+		body.Die()
 	return
-
